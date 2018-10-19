@@ -1,29 +1,49 @@
-import { AuthService } from './_services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRouting } from './app.routing';
-import { AppComponent } from './app.component';
-import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
-import { LoginComponent } from './login/login.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+import { AuthService } from './_services/auth.service';
+import { NewsApiService } from './_services/news-api.service';
+import { AppComponent } from './app.component';
+import { AppRouting } from './app.routing';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    AddComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     AppRouting,
     BrowserModule,
+    BrowserModule,
+    MatMenuModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
     AngularFontAwesomeModule,
   ],
   providers: [
-    AuthService
+    AuthService,
+    NewsApiService
   ],
   bootstrap: [AppComponent]
 })

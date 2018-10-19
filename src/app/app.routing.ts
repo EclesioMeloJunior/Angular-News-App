@@ -1,15 +1,14 @@
-import { LoginGuard } from './_guards/login.guard';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './_guards/auth.guard';
-import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './_guards/auth.guard';
+import { LoginGuard } from './_guards/login.guard';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'items',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'login',
@@ -17,15 +16,8 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
-    path: 'items',
-    component: ListComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'add',
-        component: AddComponent
-      }
-    ]
+    path: '**',
+    redirectTo: '',
   }
 ];
 
