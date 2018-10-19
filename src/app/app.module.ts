@@ -1,3 +1,4 @@
+import { AuthService } from './_services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,8 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,10 +18,13 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   imports: [
-    BrowserModule,
     AppRouting,
+    BrowserModule,
+    AngularFontAwesomeModule,
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
