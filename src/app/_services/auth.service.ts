@@ -1,4 +1,7 @@
+import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +10,30 @@ export class AuthService {
 
   private TOKEN = 'applicationToken';
 
-  constructor() { }
+  constructor(private authFirebase: AngularFireAuth) { }
 
-  getToken(): string {
-    return localStorage.getItem(this.TOKEN);
+  get authenticated(): boolean {
+    return this.authFirebase.authState !== null;
   }
 
-  login() {
-    throw new Error('Login not implemented');
+  get currentUser() {
+    return this.authFirebase;
   }
 
-  logout() {
-    localStorage.removeItem(this.TOKEN);
+  googleAuthentication(): Observable<firebase.auth.UserCredential> {
+    return new Observable(handle => {
+      const auth = new firebase.auth.GoogleAuthProvider();
+
+      auth.addScope('email');
+      auth.addScope('profile');
+
+      this.authFirebase.auth
+        .signInWithPopup(auth)
+        .then(response => handle.next(response));
+    });
+  }
+
+  logout(): Promise<void> {
+    return this.authFirebase.auth.signOut();
   }
 }

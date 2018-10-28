@@ -8,12 +8,13 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoginGuard],
+    canActivate: [LoginGuard]
   },
   {
     path: '**',

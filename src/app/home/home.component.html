@@ -11,8 +11,7 @@
 </mat-toolbar>
 
 <mat-menu #appMenu='matMenu'>
-  <button mat-menu-item>Settings</button>
-  <button mat-menu-item>Help</button>
+  <button mat-menu-item (click)="logoutAction()">Sair</button>
 </mat-menu>
 
 <mat-sidenav-container class="example-container">
